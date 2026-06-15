@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIU QIAO XIN | Portfolio</title>
+    <style>
+        /* 全局变量与色彩设定 */
+        :root {
+            --bg-color: #FFFFFF;
+            --bg-alt: #F9F7FA; /* 极淡的紫色背景，用于区分区块 */
+            --primary-purple: #D5C6E0; /* 优雅的主色调淡紫 */
+            --text-dark: #333333;
+            --text-light: #777777;
+            --font-en: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-zh: 'STFangsong', 'FangSong', 'SimSun', serif; /* 优先使用系统自带仿宋 */
+        }
+
+        /* 基础重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 全局滚动条美化 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f9f7fa;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-purple);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b8a5c6;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            font-family: var(--font-en);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* 字体类 */
+        .font-zh {
+            font-family: var(--font-zh);
+            letter-spacing: 1px;
+            font-weight: normal;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--primary-purple);
+        }
+
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-size: 14px;
+            letter-spacing: 3px;
+            font-weight: 400;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* 统一区块样式 */
+        section {
+            min-height: 100vh;
+            padding: 120px 10vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: var(--text-light);
+            margin-bottom: 60px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 1px;
+            background-color: var(--primary-purple);
+            margin: 15px auto 0;
+        }
+
+        /* 第一页：首页 WELCOME */
+        #home {
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(135deg, #FFFFFF 0%, #F4F1F8 100%);
+        }
+
+        .welcome-title {
+            font-size: clamp(30px, 5vw, 60px);
+            font-weight: 200;
+            letter-spacing: 8px;
+            margin-bottom: 40px;
+            color: var(--text-dark);
+        }
+
+        .name-zh {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .name-en {
+            font-size: 16px;
+            letter-spacing: 5px;
+            color: var(--text-light);
+            margin-bottom: 50px;
+        }
+
+        .contact-info {
+            font-size: 13px;
+            letter-spacing: 1px;
+            color: var(--text-light);
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+        }
+
+        /* 第二页：ME */
+        #about {
+            background-color: var(--bg-color);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-image {
+            width: 100%;
+            height: 55vh;
+            background-color: var(--bg-alt);
+            background-image: url('rossi/photo.jpg'); /* 个人照片 */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+        
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--primary-purple);
+            border-radius: 16px;
+            z-index: -1;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .about-container:hover .about-image::after {
+            transform: translate(10px, 10px);
+        }
+
+        .about-text h2 {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+        }
+
+        .about-tagline {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 25px;
+            border-left: 3px solid var(--primary-purple);
+            padding-left: 15px;
+        }
+
+        .about-text p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: var(--text-dark);
+        }
+
+        .edu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 25px;
+            background-color: var(--bg-alt);
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        .edu-item h4 {
+            font-size: 15px;
+            margin-bottom: 5px;
+        }
+
+        .edu-item p {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        /* 数据可视化面板 */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 60px;
+            text-align: center;
+            border-top: 1px solid #EEE;
+            padding-top: 40px;
+        }
+
+        .stat-item .stat-num {
+            font-size: 20px;
+            font-weight: 300;
+            color: var(--text-dark);
+            font-family: var(--font-en);
+            line-height: 1.2;
+        }
+
+        .stat-item .stat-label {
+            font-size: 11px;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        /* 第三页：MY PROJECT */
+        #project {
+            background-color: var(--bg-alt);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .project-card {
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border-top: 3px solid transparent;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(155, 123, 179, 0.15);
+            border-top: 3px solid var(--primary-purple);
+        }
+
+        .project-year {
+            font-size: 12px;
+            color: var(--primary-purple);
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 18px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .project-desc {
+            font-size: 14px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* 第四页：MY ACCOUNT */
+        #account {
+            background-color: var(--bg-color);
+            text-align: center;
+        }
+
+        .account-links {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .account-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+        }
+
+        .account-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: var(--bg-alt);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .account-item:hover .account-icon {
+            background-color: #fff;
+            border-color: var(--primary-purple);
+            color: var(--primary-purple);
+        }
+
+        /* 账号弹窗样式 */
+        .account-modal {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .account-modal.active {
+            opacity: 1;
+            visibility: visible;
+            background: rgba(0, 0, 0, 0.85);
+        }
+
+        .account-modal-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px;
+            transform: scale(0.9) translateY(20px);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: rgba(30, 30, 30, 0.95);
+            border-radius: 16px;
+        }
+
+        .account-modal.active .account-modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .account-modal-content img,
+        .account-modal-content video {
+            max-height: 80vh;
+            max-width: 400px;
+            object-fit: contain;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .account-modal.active .account-modal-content img,
+        .account-modal.active .account-modal-content video {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .account-modal.active .account-modal-content img:nth-child(1),
+        .account-modal.active .account-modal-content video:nth-child(1),
+        .account-modal.active .video-cover:nth-child(1) { transition-delay: 0.1s; }
+        .account-modal.active .account-modal-content img:nth-child(2),
+        .account-modal.active .account-modal-content video:nth-child(2),
+        .account-modal.active .video-cover:nth-child(2) { transition-delay: 0.2s; }
+        .account-modal.active .account-modal-content img:nth-child(3),
+        .account-modal.active .account-modal-content video:nth-child(3),
+        .account-modal.active .video-cover:nth-child(3) { transition-delay: 0.3s; }
+        .account-modal.active .account-modal-content img:nth-child(4),
+        .account-modal.active .account-modal-content video:nth-child(4),
+        .account-modal.active .video-cover:nth-child(4) { transition-delay: 0.4s; }
+        .account-modal.active .account-modal-content img:nth-child(5),
+        .account-modal.active .account-modal-content video:nth-child(5),
+        .account-modal.active .video-cover:nth-child(5) { transition-delay: 0.5s; }
+        .account-modal.active .account-modal-content img:nth-child(6),
+        .account-modal.active .account-modal-content video:nth-child(6),
+        .account-modal.active .video-cover:nth-child(6) { transition-delay: 0.6s; }
+
+        /* 视频封面占位符 */
+        .video-cover {
+            position: relative;
+            max-height: 80vh;
+            max-width: 400px;
+            height: 300px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .account-modal.active .video-cover {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .video-cover:hover {
+            transform: scale(1.02);
+        }
+
+        .video-cover::before {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-cover::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 20px solid #764ba2;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            margin-left: 5px;
+        }
+
+        .video-cover .video-title {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            right: 15px;
+            color: white;
+            font-size: 14px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* 第五页：MY EYES */
+        #eyes {
+            background-color: var(--bg-alt);
+        }
+
+        .gallery {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 20px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .gallery::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .gallery::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .gallery::-webkit-scrollbar-thumb {
+            background: var(--primary-purple);
+            border-radius: 3px;
+        }
+
+        .gallery-item {
+            flex: 0 0 auto;
+            width: 280px;
+            height: 280px;
+            background-color: #f5f5f5;
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(20%);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border-radius: 8px;
+            will-change: transform;
+            backface-visibility: hidden;
+            contain: layout paint;
+        }
+
+        .gallery-item.loaded {
+            background-color: #eee;
+        }
+
+        .gallery-item:hover {
+            filter: grayscale(0%);
+            transform: scale(1.02);
+        }
+
+        /* Lightbox 样式 */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* 照片 - 使用懒加载 */
+
+        /* 第六页：MY WORDS */
+        #words {
+            background-color: var(--bg-color);
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .words-container {
+            max-width: 800px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+        }
+
+        .words-item {
+            text-align: left;
+            padding: 30px;
+            background: var(--bg-alt);
+            border-radius: 12px;
+            border-left: 4px solid var(--primary-purple);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .words-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(155, 123, 179, 0.1);
+        }
+
+        .words-title {
+            font-size: 18px;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .words-title a:hover {
+            color: var(--primary-purple);
+        }
+
+        .words-hint {
+            font-size: 12px;
+            color: var(--text-light);
+            margin: 5px 0 10px 0;
+            font-style: italic;
+        }
+
+        .words-text {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-dark);
+            margin: 0;
+            position: relative;
+            z-index: 1;
+            max-height: 3.6em;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .words-text.expanded {
+            max-height: 1000px;
+        }
+
+        .words-expand {
+            display: inline-block;
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--primary-purple);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .words-expand:hover {
+            color: #9B7BB3;
+        }
+
+        .words-author {
+            font-size: 14px;
+            color: var(--text-light);
+            letter-spacing: 2px;
+        }
+
+        /* 底部版权 */
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: var(--bg-alt);
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--text-light);
+        }
+
+        /* 简单的渐入动画类 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s ease, transform 1s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .about-container { grid-template-columns: 1fr; gap: 40px; }
+            .edu-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 25px; }
+            .gallery { grid-template-columns: 1fr; }
+            nav { padding: 20px; flex-direction: column; gap: 15px; }
+            .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            section { padding: 100px 5vw; }
+        }
+        @media (max-width: 480px) {
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+
+        /* 文章弹窗样式 */
+        .article-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(155, 123, 179, 0.9);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .article-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .article-modal.closing {
+            opacity: 0;
+        }
+
+        .article-modal-content {
+            background: linear-gradient(135deg, #ffffff 0%, #fafafa 100%);
+            width: 90%;
+            max-width: 900px;
+            max-height: 88vh;
+            border-radius: 20px;
+            overflow: hidden;
+            transform: scale(0.9) translateY(30px);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+        }
+
+        .article-modal.active .article-modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .article-modal.closing .article-modal-content {
+            transform: scale(0.9) translateY(30px);
+        }
+
+        .article-modal-header {
+            padding: 25px 35px;
+            border-bottom: 1px solid rgba(155, 123, 179, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(135deg, #F3E7FF 0%, #E8F4FF 100%);
+        }
+
+        .article-modal-title {
+            font-size: 22px;
+            color: #9B7BB3 !important;
+            margin: 0;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .article-modal-close {
+            font-size: 32px;
+            color: #666;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s ease;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .article-modal-close:hover {
+            color: #9B7BB3;
+            transform: rotate(90deg);
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .article-modal-body {
+            padding: 40px 45px;
+            overflow-y: auto;
+            flex: 1;
+            font-size: 17px;
+            line-height: 2.2;
+            color: #2c2c2c;
+            white-space: pre-wrap;
+            letter-spacing: 0.5px;
+        }
+
+        /* 优化滚动条样式 - Webkit浏览器 */
+        .article-modal-body::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .article-modal-body::-webkit-scrollbar-track {
+            background: linear-gradient(180deg, #f8f8f8 0%, #f0f0f0 100%);
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .article-modal-body::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #9B7BB3 0%, #7B5B93 100%);
+            border-radius: 10px;
+            border: 2px solid #f8f8f8;
+            min-height: 50px;
+        }
+
+        .article-modal-body::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, #8B6BA3 0%, #6B4B83 100%);
+        }
+
+        /* Firefox 滚动条样式 */
+        .article-modal-body {
+            scrollbar-width: thin;
+            scrollbar-color: #9B7BB3 #f0f0f0;
+        }
+
+        .article-link {
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .article-link:hover {
+            color: var(--primary-purple);
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">LIU QIAO XIN</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">Me</a></li>
+            <li><a href="#project">Project</a></li>
+            <li><a href="#account">Account</a></li>
+            <li><a href="#eyes">Eyes</a></li>
+            <li><a href="#words">Words</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <h1 class="welcome-title fade-in">WELCOME<br>to my world</h1>
+        <div class="fade-in" style="transition-delay: 0.2s;">
+            <div class="name-zh font-zh">刘巧欣</div>
+            <div class="name-en">LIU QIAO XIN</div>
+        </div>
+        <div class="contact-info fade-in" style="transition-delay: 0.4s;">
+            <p>E: 353759708@qq.com</p>
+            <p>T: +86 134 0863 5567</p>
+        </div>
+    </section>
+
+    <section id="about">
+        <h3 class="section-title fade-in">Me</h3>
+        <div class="about-container">
+            <div class="about-image fade-in"></div>
+            <div class="about-text fade-in">
+                <h2>ABOUT ME</h2>
+                
+                <div class="edu-grid font-zh">
+                    <div class="edu-item">
+                        <h4>重庆大学 (本科在读)</h4>
+                        <p>汉语言文学专业 · 2024级<br>GPA 3.8 / 4.0 (专业前15%)</p>
+                    </div>
+                    <div class="edu-item">
+                        <h4>台湾中山大学 (交换交流)</h4>
+                        <p>港澳台交流项目 (2025.09 - 2026.01)<br>GPA 3.9 / 4.0</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-grid fade-in">
+            <div class="stat-item">
+                <div class="stat-num font-zh">视频剪辑</div>
+                <div class="stat-label font-zh">剪映</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num font-zh">内容设计</div>
+                <div class="stat-label font-zh">Canvas，幕布，AI</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num font-zh">平台运营</div>
+                <div class="stat-label font-zh">小红书/抖音/Ins/公众号/微博</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-num font-zh">办公软件</div>
+                <div class="stat-label font-zh">Word/Excel/PPT，擅长数据统计，方案撰写</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="project">
+        <h3 class="section-title fade-in">My Project</h3>
+        <div class="project-grid">
+            <div class="project-card fade-in">
+                <div class="project-year">2025 — PRESENT</div>
+                <h4 class="project-title font-zh">自媒体账号独立运营</h4>
+                <p class="project-desc font-zh">
+                    <strong>内容孵化：</strong>独立运营垂直类目粉丝账号，负责选题策划、素材剪辑到发布全流程。<br><br>
+                    <strong>数据驱动：</strong>利用AI监测流量数据，分析完播率与标签策略。多支视频播放量破万，单条视频<strong>10万+浏览、1万+点赞</strong>。
+                </p>
+            </div>
+            <div class="project-card fade-in" style="transition-delay: 0.1s;">
+                <div class="project-year">2026</div>
+                <h4 class="project-title font-zh">蓝信封公益机构实习</h4>
+                <p class="project-desc font-zh">
+                    <strong>AI工作流搭建：</strong>运用Coze平台进行AI智能体搭建与Prompt调优，实现AI辅助文稿自动化撰写。<br><br>
+                    <strong>数字化治理：</strong>深度适配飞书生态，跟进电话回访、分析用户画像，业务协作。
+                </p>
+            </div>
+            <div class="project-card fade-in" style="transition-delay: 0.2s;">
+                <div class="project-year">2025-2026</div>
+                <h4 class="project-title font-zh">调查科研实践</h4>
+                <p class="project-desc font-zh">
+                    <strong>社区咖啡馆调研：</strong>独立主导一线田野调查，开展消费者访谈与门店观察，完成咖啡店、经营者和顾客三类主体分析，研究其构成的张力。<br><br>
+                    <strong>SRTP科研：</strong>检索古籍数据库，完成<strong>200+篇</strong>有效文献筛选与《阿垅佚诗》资料系统整理。
+                </p>
+            </div>
+            <div class="project-card fade-in" style="transition-delay: 0.3s;">
+                <div class="project-year">2024 - 2026</div>
+                <h4 class="project-title font-zh">校园组织与策划宣发</h4>
+                <p class="project-desc font-zh">
+                    <strong>校心理社团策划部：</strong>统筹"心理游园会"等校园活动，负责方案撰写、游戏流程设计及多部门协同，落地线下百人活动。<br><br>
+                    <strong>学院宣传部：</strong>负责学院活动官方宣发，产出宣传文案，兼任现场纪实拍摄。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="account">
+        <h3 class="section-title fade-in">My Account</h3>
+        <div class="account-links fade-in">
+            <div class="account-item" data-account="douyin">
+                <div class="account-icon font-zh">抖音</div>
+                <span class="font-zh" style="font-size: 14px;">视频剪辑与流量复盘</span>
+            </div>
+            <div class="account-item" data-account="xiaohongshu">
+                <div class="account-icon font-zh">小红书</div>
+                <span class="font-zh" style="font-size: 14px;">图文内容与生活记录</span>
+            </div>
+        </div>
+        <!-- 账号弹窗 -->
+        <div class="account-modal" id="account-modal">
+            <div class="account-modal-content" id="account-modal-content"></div>
+        </div>
+    </section>
+
+    <section id="eyes">
+        <h3 class="section-title fade-in">My Eyes</h3>
+        <p class="font-zh fade-in" style="color: var(--text-light); text-align: center; margin-bottom: 40px;">世界不断流经，与我的眼一起呼吸。</p>
+        <div class="gallery fade-in">
+            <div class="gallery-item" data-src="照片/1.jpg"></div>
+            <div class="gallery-item" data-src="照片/2.JPG"></div>
+            <div class="gallery-item" data-src="照片/3.JPG"></div>
+            <div class="gallery-item" data-src="照片/4.jpg"></div>
+            <div class="gallery-item" data-src="照片/6.JPG"></div>
+            <div class="gallery-item" data-src="照片/7.JPG"></div>
+            <div class="gallery-item" data-src="照片/8.JPG"></div>
+            <div class="gallery-item" data-src="照片/9.JPG"></div>
+            <div class="gallery-item" data-src="照片/10.JPG"></div>
+            <div class="gallery-item" data-src="照片/11.JPG"></div>
+        </div>
+        <!-- Lightbox -->
+        <div class="lightbox" id="lightbox">
+            <img src="" alt="" class="lightbox-content" id="lightbox-img">
+        </div>
+    </section>
+
+    <section id="words">
+        <h3 class="section-title fade-in">My Words</h3>
+        <div class="words-container fade-in">
+            <div class="words-item">
+                <h4 class="words-title font-zh"><a href="https://mp.weixin.qq.com/s/H1M-rZJ6LWhnxroSQvvaxA" target="_blank" style="color: inherit; text-decoration: none;">公众号推文 《孩子，你可以慢慢长大》 ↗</a></h4>
+                <p class="words-hint font-zh">点击标题可跳转至原文</p>
+                <p class="words-text font-zh">
+                    上一次过儿童节，还是初二少先队退队仪式。朋友一只手搭在我的肩上，恰好挡住下巴。阳光太好，我眯着眼，扬起的嘴角挤压出笑纹——定格了告别儿童的瞬间。台上放着煽情的音乐，我偷偷掉了眼泪。那时候总觉得，眼泪是脆弱的表现。处于自尊敏感期的我，终于来到儿童迈向青年的时刻，彻底宣判童年结束。仪式结束后，全班去餐厅庆祝。男生比拼谁吃的牛排更多，个个囫囵吞枣。女生想偷喝小酒，被身后父母的眼神警告，只好拿起饮料。然而最后还是东倒西歪，原来饮料也能让人醉么？
+                </p>
+                <span class="words-expand font-zh">展开全文 ▼</span>
+            </div>
+            <div class="words-item">
+                <h4 class="words-title font-zh"><span class="article-link" data-article="tianma">微小说 《天马》 ↗</span></h4>
+                <p class="words-hint font-zh">点击标题可查看原文</p>
+                <p class="words-text font-zh">
+                    我不知道自己什么时候冲出了那栋楼。风从耳边撕过去，霓虹被拉成长线，立交桥上的车流像燃烧的河。远处有跨年倒计时的灯光秀正在彩排。元旦就在明天，这座城市已经迫不及待要跨进马年。原先那根时时缠绕我，锁紧我的藤蔓，使我喘不上气，肩头僵硬。顷刻，松开。冲破的感觉如此轻盈。
+                </p>
+                <span class="words-expand font-zh">展开全文 ▼</span>
+            </div>
+            <div class="words-item">
+                <h4 class="words-title font-zh"><span class="article-link" data-article="guanhai">赋 《觀海賦》 ↗</span></h4>
+                <p class="words-hint font-zh">点击标题可查看原文</p>
+                <p class="words-text font-zh">
+                    海有萬狀，非一色所能概之。其貌隨時而變，陰晴各一，寒暑不同。若夫晴日和煦，光鋪萬頃，浮金點點，耀眼奪目。遠眺蒼藍，與天相接。近觀澄波透明，層層可見。夏海湛藍，細軟平沙處，渺彌曠遠，如慈母開懷抱世;微風拂面，碧波徐興，通「心曠神怡，寵辱偕忘」之感。乃知海際無涯，猶天空倒懸，浩浩洪荒，澹濘泱漭，其為浺瀜也。
+                </p>
+                <span class="words-expand font-zh">展开全文 ▼</span>
+            </div>
+            <div class="words-item">
+                <h4 class="words-title font-zh"><span class="article-link" data-article="aili">创意写作课程 科幻小说 《艾丽的奇幻旅行》 ↗</span></h4>
+                <p class="words-hint font-zh">点击标题可查看原文</p>
+                <p class="words-text font-zh">
+                    然后，艾丽就看见了一大片粉色海洋。第一天在地上偶尔能看见的粉色透明流体在这里汇聚成一片汪洋。水母飘了进去，和这片汪洋融为一体。汪洋周围还聚集了很多生命体，推搡着，有些直接进去了，有些只是在边缘徘徊，还有一些竟然是从汪洋里面出来的。她尝试进那片粉色透明汪洋里，发现自己漂浮起来，像被包裹进一个很大的果冻里，液体裹住她的瞬间，冰凉中泛起一丝暖意，像是母亲的拥抱。艾丽似乎觉得身体的某些部位在渴望着这些粉色液体。她耳边传来细微的嗡鸣，仿佛试图挤进的粉色物体嫌她占地。
+                </p>
+                <span class="words-expand font-zh">展开全文 ▼</span>
+            </div>
+        </div>
+
+        <!-- 文章弹窗 -->
+        <div class="article-modal" id="article-modal">
+            <div class="article-modal-content">
+                <div class="article-modal-header">
+                    <h3 class="article-modal-title font-zh"></h3>
+                    <span class="article-modal-close">&times;</span>
+                </div>
+                <div class="article-modal-body font-zh"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 LIU QIAO XIN. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        console.log('脚本开始执行');
+        document.addEventListener("DOMContentLoaded", function() {
+            console.log('DOMContentLoaded 事件触发');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            const hiddenElements = document.querySelectorAll('.fade-in');
+            hiddenElements.forEach((el) => observer.observe(el));
+
+            // 图片懒加载
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const item = entry.target;
+                        const imgSrc = item.getAttribute('data-src');
+                        if (imgSrc) {
+                            item.style.backgroundImage = `url('${imgSrc}')`;
+                            item.classList.add('loaded');
+                            imageObserver.unobserve(item);
+                        }
+                    }
+                });
+            }, {
+                rootMargin: '300px',
+                threshold: 0.1
+            });
+
+            const lazyImages = document.querySelectorAll('.gallery-item');
+            lazyImages.forEach(img => {
+                imageObserver.observe(img);
+            });
+
+            // Lightbox 功能
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+
+            galleryItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const imgSrc = this.getAttribute('data-src');
+                    lightboxImg.src = imgSrc;
+                    lightbox.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            lightbox.addEventListener('click', function() {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            });
+
+            // 账号弹窗功能
+            const accountItems = document.querySelectorAll('.account-item');
+            const accountModal = document.getElementById('account-modal');
+            const accountModalContent = document.getElementById('account-modal-content');
+
+            accountItems.forEach((item) => {
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const accountType = this.getAttribute('data-account');
+                    
+                    accountModalContent.innerHTML = '';
+                    
+                    if (accountType === 'douyin') {
+                        // 优先添加照片到最前面
+                        const img = document.createElement('img');
+                        img.src = '抖音/1.jpg';
+                        img.loading = 'lazy';
+                        img.style.flexShrink = '0';
+                        
+                        img.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                        });
+                        
+                        accountModalContent.appendChild(img);
+
+                        // 只保留最小的视频文件，方便上传
+                        const videos = ['抖音/6.MP4', '抖音/7.MP4'];
+                        
+                        videos.forEach((videoSrc) => {
+                            const video = document.createElement('video');
+                            video.src = videoSrc;
+                            video.controls = true;
+                            video.preload = 'none'; // 不预加载，减少初始加载压力
+                            video.style.flexShrink = '0';
+                            video.style.borderRadius = '12px';
+                            video.style.maxHeight = '80vh';
+                            video.style.maxWidth = '400px';
+                            video.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+                            
+                            // 添加错误处理
+                            video.addEventListener('error', function(e) {
+                                console.log('视频加载失败:', videoSrc);
+                                // 如果视频加载失败，显示一个占位符
+                                video.style.display = 'none';
+                                const fallback = document.createElement('div');
+                                fallback.style.padding = '40px';
+                                fallback.style.textAlign = 'center';
+                                fallback.style.background = '#f0f0f0';
+                                fallback.style.borderRadius = '12px';
+                                fallback.style.maxWidth = '400px';
+                                fallback.innerHTML = `<p style="color: #666;">视频暂时无法加载</p><p style="font-size: 12px; color: #999;">${videoSrc}</p>`;
+                                accountModalContent.appendChild(fallback);
+                            });
+                            
+                            video.addEventListener('click', function(e) {
+                                e.stopPropagation();
+                            });
+                            
+                            accountModalContent.appendChild(video);
+                        });
+                    } else {
+                        const img = document.createElement('img');
+                        img.src = '小红书/IMG_2799.jpg';
+                        img.style.maxHeight = '300px';
+                        img.style.borderRadius = '12px';
+                        accountModalContent.appendChild(img);
+                    }
+                    
+                    accountModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            // 文字展开/收起功能
+            const expandButtons = document.querySelectorAll('.words-expand');
+            expandButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const textElement = this.previousElementSibling;
+                    if (textElement.classList.contains('expanded')) {
+                        textElement.classList.remove('expanded');
+                        this.textContent = '展开全文 ▼';
+                    } else {
+                        textElement.classList.add('expanded');
+                        this.textContent = '收起全文 ▲';
+                    }
+                });
+            });
+
+            accountModal.addEventListener('click', function() {
+                accountModal.classList.remove('active');
+                document.body.style.overflow = '';
+                // 动画结束后清空内容
+                setTimeout(() => {
+                    if (!accountModal.classList.contains('active')) {
+                        accountModalContent.innerHTML = '';
+                    }
+                }, 400);
+            });
+
+            // 文章弹窗功能
+            const articles = {
+                tianma: {
+                    title: '天马',
+                    author: '刘巧欣',
+                    content: `那天晚上，我还在处理文件，窗外闪过一道银光。后来，我把它命名为"天马"。
+
+笃、笃、笃，三声敲击桌面的声音。
+
+"小刘，来我办公室一趟。"——如期而至的命令。
+
+三年前，我还会手心发汗。现在，我只是推了推眼镜，嘴角上升到不会太夸张也不会太假的弧，"李总，请问有什么事？"
+
+他抖着腿，一根粗短的手指盖上了一小行字，"这个提议可以。不过临近新年，现在的年轻人不是喜欢联动吗？你把方案再改一版，加点'马年元素'，做点国潮的。"
+
+文件上的字离我越来越远。反而，文件上的银色logo从清晰到模糊，边缘仿佛被揉开，先是一滩银色的圆，不断变化，逐渐蹬出四个马蹄，一抹银色的鬃毛飘在纸上。
+
+三年前，听到"笃、笃、笃"，我的心会往上提三下。然后我飞快保存好文件，拿起笔记本，反复默念措辞。直到走出办公室，掐在手心的手指才放松下来。那时，我望向窗外，想象我是一匹马，就冲破玻璃，从晨光驰骋到霓虹夜色。
+
+后来，我学会了让嘴角刚好上升15度，学会了把"好的李总我马上改"说得像呼吸一样自然。而窗外，对面写字楼的灯一格一格亮着，像一盘永远下不完的棋。
+
+"……小刘？小刘！"
+
+我回过神。李总正看着我，左腿还在抖，抖得办公桌轻轻震颤。
+
+"我刚才说的，你记下了吗？"
+
+"好的李总，我马上改。"我点头。说这句话的时候，我甚至不需要思考。
+
+走出办公室时，我看了一眼窗外——只有对面写字楼墙上倒映的灯光，和灯光里我自己模糊的影子。
+
+我撇过眼，不知何时已坐回工位。马年将至，牛马依旧要做工。
+
+手表咔哒一声，地板上的阴影和办公椅的轮子形成特定的角度，窗外按时亮起灯光，和墨蓝色的天形成最熟悉的明暗对比。
+
+我盯着屏幕，那枚银色logo又晕开，像一滴水落进光里——然后忽然长出四蹄，一缕鬃毛。
+
+这时，一道光劈了进来，像一道冷白的电流，直直刺入玻璃。
+
+我下意识闭上眼。再次睁开，一匹马，悬在窗外。
+
+它飘浮在空中，浑身银白，鬃毛像流动的数据流，飘曳空中。它四蹄起落，没有任何声音，却让人感觉到某种震动，从空气深处传来。
+
+它正看着我。
+
+那匹马的前蹄轻轻叩击玻璃——笃、笃、笃。一、二、三。
+
+马的眼睛银光流转，像两颗小小的满月。我被月亮吸住了。紧接着，月亮离我越来越近，那层玻璃如水般荡开，溶化了。它朝我走过来，马蹄踏在地面上，没有声音，停到我面前。它低下头，额头抵住我的额头。
+
+"你来了。"我听见自己说。
+
+我不由自主地闭上眼睛，看见了我自己——
+
+三年前的我，加班到凌晨，对着夜空说"总有一天我要跑出去"。
+
+两年前的我，听见"笃、笃、笃"不再心跳加速，只是默默起身走进办公室。
+
+一年前的我，嘴角升到15度，却在夜里失眠到三点。
+
+今天的我，在办公室里把"马上改"说得像呼吸一样自然。
+
+我感觉有什么东西在我身体里醒了过来——
+
+它先是在神经里窜了一下，然后冲进脊髓，向上，向前，向所有被压住的地方扩散。
+
+我听见一个声音在身体里响起——跑！
+
+那匹马，如定格动画，先是四蹄一只一只抬起来，再踏起来、跑起来、奔起来，越来越快、越来越快！
+
+我猛地睁开眼。
+
+城市在我脚下铺开。
+
+我不知道自己什么时候冲出了那栋楼。风从耳边撕过去，霓虹被拉成长线，立交桥上的车流像燃烧的河。远处有跨年倒计时的灯光秀正在彩排。元旦就在明天，这座城市已经迫不及待要跨进马年。
+
+原先那根时时缠绕我，锁紧我的藤蔓，使我喘不上气，肩头僵硬。顷刻，松开。冲破的感觉如此轻盈。
+
+我越过办公大楼，大楼玻璃上倒映着一匹银色的，浑身发光的马。我越过立交桥的晚高峰车流，车灯四射，拂过飞扬的银色鬃毛。我掠过通宵营业的便利店，门口的灯忽然亮了一下，店员抬头，像是察觉到什么，又什么都没看见。
+
+银亮的鬃毛正如火般疯狂肆意散射，不断向上拔。我在燃烧！
+
+我撕扯着自我，我向月呐喊，我张大嘴巴——
+
+我吞下无数个格子间里的失眠，吞下Ctrl+C和Ctrl+V的循环，吞下重复的指令，吞下三声敲击，吞下恰到好处的微笑，吞下三年来的每一次"好的李总我马上改"……
+
+当我停下来的时候，我已经回到了那扇窗前。
+
+办公室还是原来的样子。电脑屏幕亮着，那份"马年联动"的提案停在未完成的页面。窗外渐渐泛白，新的一天正在赶来。
+
+我感知到那匹马还在我身边。"明天还会来吗？"
+
+它没有回答，只是转头看向窗外。城市正在苏醒。跨年的灯光秀正在最后一次彩排，马年要来了。
+
+它的身体慢慢变淡，银色的轮廓一点一点散开，融进城市的天光里。那些光落下来，落进街道，落进楼房，落进每个人的脉搏中，输送进城市的心跳。这座城市正迎来更强劲，更有力的新的心跳。
+
+我低下头，看见手心里有一个银色的马蹄印，正在慢慢淡去。
+
+笃、笃、笃。
+
+办公室的门开着，李总的座位空着。声音是从窗边传来的——风，吹动了百叶窗。
+
+窗外，新的太阳正在升起。
+
+我打开文档，把那份"马年献瑞"的提案删了。我重新开始写，是写给天马的，写给三年前的自己，写给每一个还在工位上、偶尔会望向窗外的年轻人的。
+
+写到最后一行时，窗外又闪过一道银光。
+
+我知道我们还在跑着。
+
+我不是要离开这座城市。
+
+我是要重新进入它。
+
+当时针分针准确对齐，地板上的阴影和办公椅的轮子再形成特定的角度，窗外亮起灯光时，我还会望向窗外。
+
+有时候什么都没有。有时候有一道一闪而过的光。
+
+有时候，我会透过玻璃看见一匹正在奔跑的马。
+
+它越来越淡了，像虚影，像水渍，像即将写完的故事最后一行的最后一个字。
+
+但我知道我们永远没有停止过。
+
+每到跨年夜，当灯光变幻，当这座城市为新年倒数，当所有人都仰头看天的时候——
+
+总有一道银光，比霓虹光更快、更亮、更野，从东到西，跑过整座城市的上空。
+
+那是一匹天马。
+
+我是一匹天马啊！我吞掉重复、麻木的一切！我不休止地燃烧！我不停地奔跑！
+
+我便是我，你便是你，这个世界——正在变成它崭新的样子。`
+                },
+                guanhai: {
+                    title: '觀海賦',
+                    author: '刘巧欣',
+                    content: `予少長於內陸，多見山而少見海。及至台，始得與滄溟為鄰。每臨岸觀海，望浮光躍金之態，聽驚濤拍岸之聲，浪卷俗務，使暫離樊籠，胸中千結，皆隨潮舒散。是以予覺觀海之妙，遂作觀海賦，以寄余思。
+
+海有萬狀，非一色所能概之。其貌隨時而變，陰晴各一，寒暑不同。若夫晴日和煦，光鋪萬頃，浮金點點，耀眼奪目。遠眺蒼藍，與天相接。近觀澄波透明，層層可見。夏海湛藍，細軟平沙處，渺彌曠遠，如慈母開懷抱世;微風拂面，碧波徐興，通「心曠神怡，寵辱偕忘」之感。乃知海際無涯，猶天空倒懸，浩浩洪荒，澹濘泱漭，其為浺瀜也。
+
+若夫陰雲密布，黛碧千里，浪影沈沈，水色幽深。遠望茫茫，如墨漫空，近見濁水吐沙，翻湧不息。東北風盛，懸崖峭壁處，礐石怒號。水勢穿狹，白浪飛濺，感「亂石穿空，驚濤拍岸，捲起千堆雪」之語。乃知海勢浩蕩，猶雷霆之怒，千鈞之重，磅礡雄渾，其為奇偉也。
+
+爾其水府之內，吞吐噓噏，所謂無盡藏也。予可見磐石竦峙，珊瑚叢生，海龜悠游，群魚并行，潛戲其間。萬靈悄生，暗流迴旋，若鯤鵬欲扶搖而上。夫萬物皆有性靈，草木隨風而動，山石因雨而坚。海亦納日月，匯百川，生息無窮。
+
+故予每臨海，知身雖渺然，而心與造物之所共適焉。觀海者，是所以召见其心，察心與萬象俱大，使性與自然同游也。`
+                },
+                aili: {
+                    title: '艾丽的奇幻旅行',
+                    author: '刘巧欣',
+                    content: `艾丽感受到一阵隐隐的光，她皱皱眉，用手挡住光，睁开了眼睛。艾丽望着充斥着粉色的天空，心想又是一天了啊。自搭乘的那辆宇宙飞船出事以后，她便降落在这里。
+
+尽管现在是科技高度发达的世界，但是艾丽和妈妈相依为命，妈妈是超级忙碌的大科学家，她并不敢独自前往陌生星球。而且现在和地球达成星际合作的星球也是寥寥无几。因此虽然身边的同学多多少少都去过宇宙里其它星球旅行，但艾丽还是选择做一个地球守望者。艾丽想如果能和妈妈在地球生活一辈子也是很好的，她是一个知足的女孩。这次借着17岁生日，锻炼自己独自生活的能力，在和妈妈一起制定详细的旅行计划之后才来的。可惜，看着周围全部萦绕着粉色荧光的事物，这个想法还是像泡沫一样幻灭了。
+
+当昏迷后一醒来，她就告诉自己要冷静下来，找到回家的办法。摸摸贴在手上的通讯芯片，坏了；摸摸戴在头上的智能光脑，坏了；看看周围一片空荡，好像并不属于地球能够认识和通讯的地方，坏了……艾丽带着忧愁环顾了一圈——粉色的土地，粉色的岩石，还有粉色的不知名透明流体。如果说地球是蓝色海洋包裹的星球，这里就是粉色海洋！以前的艾丽看着粉色觉得是多么美好的颜色，经常也梦见粉色星球，小时候还画下来被夸有想象力。这下只感觉自己每个毛孔都要被粉色占领了。
+
+艾丽摇摇头，试图让自己清醒一点，首先要找到让自己存活的地方。还好没走多久就碰到了一个山洞。这里除了颜色单调，大部分的构造都和地球相似，应该不算太糟。艾丽偷偷松了口气，但也不敢放心。俗话说屋漏偏逢连夜雨，艾丽秉持着人生就是给你一个巴掌再给你一颗枣之后再给你一个更大的巴掌这样的理念，作为一个悲观主义者活了十七年。出生开始，她就和妈妈一直生活在一起，没有父亲的日子不像一些和百年前对单亲妈妈的观念如出一辙的人类评价的那么艰苦。虽然妈妈支撑家庭要忙碌了些，但在她人生的重要时刻从未缺席。唯一特别的是，小时候开始她就一直能间断地梦见和这里一样的粉色星球。
+
+现在她来到了梦中的世界，空荡的地方里只有自己，这样透明的感觉和地球上的生活竟还有几分相似，除了妈妈，她想。她仰头，看着粉色的天空，或许还有几颗星星，其中一颗是地球吗？妈妈说过如果想她了，就许个愿吧。
+
+艾丽双手合十，对着一颗她自认为是地球的星星许愿：
+
+希望我能平安回到地球，和妈妈永远生活在一起。17岁生日快乐，艾丽。
+
+一个身穿银色制服，戴方框银边眼镜的女人摸着右边银色方块芯片，踩在粉色土地上，低着头，似乎在寻找什么。最后她对着一个什么东西扫了扫，说"确认为生命体，存活……"艾丽眉头紧皱，身体抖了一下，猛地醒来。她想自己是糊涂了，以为妈妈来接自己了，实际上是梦而已。
+
+艾丽决定自己探索这个粉色秘境。她捡了一根长物体，形似杆子，质体坚硬，适合在路上做标记以免迷路，顺便防身。路上稀稀拉拉长着一些散发粉色荧光的植物，形态倒是和地球上的花草果木相差不大。她尝试着采摘几个果子吃，没什么味道，汁水倒是能补充一些能量。她给自己打打气，加油，艾丽，本来就是要锻炼自己生活的能力，只是目的地更改了。大步向前走，希望在前方。逐渐地，艾丽回头已经看不见山洞了。
+
+她顿了顿步子，继续向前。她看见了一群粉色的透明物聚集在一起，有些像兔子，有些像水母……总之形态各异，浑身被粉光笼罩，但似乎互相之间还能进行交流。它们淡淡地在艾丽面前活动，并没有发现这个外星人。艾丽走近了。那些粉色生命体似乎察觉到，有些忽地跳开，有些还是做自己的，有些想凑近艾丽。艾丽看着这些物体，个头都不算很大块，大致有些轮廓，整体是透明的。艾丽鼓起勇气，伸出一个手指头，蹲下来朝一个形似水母的东西戳了戳——软的，滑的，有点像果冻，但又感觉像戳了空气。这些物体没有什么攻击性，被戳中的水母只是晃了晃，就自己飘走了。艾丽完全被它们吸引了，跟着水母，想看看它们能去哪。
+
+然后，艾丽就看见了一大片粉色海洋。第一天在地上偶尔能看见的粉色透明流体在这里汇聚成一片汪洋。水母飘了进去，和这片汪洋融为一体。汪洋周围还聚集了很多生命体，推搡着，有些直接进去了，有些只是在边缘徘徊，还有一些竟然是从汪洋里面出来的。她尝试进那片粉色透明汪洋里，发现自己漂浮起来，像被包裹进一个很大的果冻里，液体裹住她的瞬间，冰凉中泛起一丝暖意，像是母亲的拥抱。艾丽似乎觉得身体的某些部位在渴望着这些粉色液体。她耳边传来细微的嗡鸣，仿佛试图挤进的粉色物体嫌她占地。
+
+于是她决定转身向山洞走去。然而，她却看见锈红色的东西。违和感太强，像自己一样。她不得不去看了。那堆锈红色的东西上面已经覆盖了大片粉色，艾丽用杆子敲打了一下，发出了清脆的响声。是铁？艾丽不自觉吞了吞口水。如果说人生有三大紧张时刻，那么等老师公布分数是第三名，等着和妈妈见面是第二名，此时此刻就是第一名。艾丽像看见亲人一般眼含热泪地看着这堆废铁。艾丽挽起袖子去搬这堆铁，一步，两步……天黑了，艾丽终于靠着模糊的标记，努力的劲头，与一堆什么也不知道的铁，回到了山洞。铁虽然已经被粉色侵蚀，但艾丽懂它，只是不得已客居他乡罢了。总有一天落叶要归根，落铁会找到地球人，失落的艾丽也会回到地球吗？
+
+艾丽抱着这堆铁，望向天空。她摩挲着十岁生日时妈妈送的项链，外壳刻着"宇宙的奇迹"。她记得妈妈曾说"宇宙里有很多奇迹，某颗星球会是你的守护星，守护迷路的孩子。"她是被这颗星球守护的孩子吗？
+
+保佑艾丽，一定要回到妈妈身边。
+
+第三天，第四天，……第一千天过去了，越堆越高的果子，越来越多的划痕，越来越靠近角落的铁，和越来越想躺平的艾丽。艾丽也不是毫无收获，她自认为已经和那些粉色生命体打好了关系——活泼型的会跟着她在山洞里转一圈，觉得这里和这个外来物一样无聊，又转出去。艾丽逐渐不再仰望天空，也不再许愿了。
+
+艾丽已经咀嚼着自己17年的回忆整整一千天了，她不知道自己贫瘠的17年居然有这么多有意思的事情吗，不知道和妈妈见面的日子能有这么多吗。艾丽也不知道自己为什么还活着，只知道妈妈的样子在脑海里越来越清晰，有些时候也是有点模糊的，比如哪颗痣长在哪里，她已经记不清了。每次想到这种细节，她都想等回去她一定会仔仔细细地看一遍，然后记下来。艾丽的指甲已长到能在地面刻字。她写下"妈妈"，又狠狠擦去。
+
+艾丽走出山洞，熟门熟路地走进一个破败的人类基地。
+
+大概是第一百天发现的吧。当时艾丽只恨自己为什么在学校选的是宇宙文学论，而对妈妈的实验报告毫不感兴趣。然后，她发现很模糊的一句话，在几十天的反复琢磨下，艾丽觉得自己已经彻底拥有了和妈妈一样锲而不舍的科学家精神，终于破译了。"感恩宇宙，留下新生命。"她想到以前母亲听到自己提到粉色星球之后，总是温柔地笑着对自己说："说不定真的存在呢。这里藏着宇宙的答案。"星球真的存在，可是答案是什么呢？
+
+今天许个愿吧。艾丽对着天空，双手合十。
+
+感恩宇宙，留下艾丽。
+
+艾丽在基地里还发现了一个早就没有能源的飞船，现在她正坐在上面，再次模拟起航。她觉得自己要是这个时候回到地球，可以无痛考取星际飞船驾驶证了。妈妈一定会为她骄傲的，这么多天也算是完成了17岁独立生活的证明了。她似乎看见一颗银点正撕裂粉色天幕。但她不以为意，也许只是幻觉吧。
+
+紧接着传来一阵轰隆隆的声音，艾丽已经没办法忽视了。她想自己不会真的疯了吧，这一天还是要到来了吗？然后艾丽就看见一个星舰——银色的，没有被粉色侵蚀的物体。艾丽感觉自己心脏已经被揪紧了。这是我快死之前的回光返照吗？艾丽掐着自己，试图保持清醒。她感觉到一阵痛苦，已经分不清是生理还是心理了。艾丽只能站在原地，她好想跑过去，但她又丝毫不能动。她好想看清，但视线已经模糊不清。艾丽已经看不见，听不清，只剩下心脏砰砰的跳动，似乎在向飞过来的星舰靠近。
+
+星舰降落，一个身穿银色制服的女人走了下来。她碰了一下手腕上芯片，开始低着头扫描。"呃。"一声不知道哪里来的声音把她吓了一跳。女人抬头看，才发现面前不远处有一个女孩。女人看着女孩从一个破旧的飞船上翻滚下来，趴在地上，四肢并用想要站起来。她赶紧跑过去，把女孩搀扶起来，"你好，我是星际检查官，负责检测星际生命。不好意思，我没有想到离地球这么远的星球还有人类。请问你来到这里有多久了？"艾丽试图发出声音，却发现刚才那个音节已经是自己目前能够表达的最大限度了。艾丽立马拿起杆子在土地上划上文字"我叫艾丽，大概一千天以前由于乘坐的飞船出事掉落在这里，我已经很久没见到人类了，请问你可以接我回地球吗？"
+
+女人凑近了艾丽，又再问："你真的……叫艾丽？"艾丽看着女人睁大了眼睛盯着自己，自己使劲点头。接着她看见女人用一个仪器对着自己，上下扫了扫。女人看着屏幕上"比对成功"的字样，呼吸提到了心口，化为泛红的眼眶。她问艾丽："你是春樱的女儿吗？"艾丽听见母亲的名字，感觉身体有股无穷的力量要爆炸开来，却只能迸发出两个字："我是。"女人忽然紧紧地抱住艾丽，说"你妈妈……春樱她……有东西留给你。"
+
+艾丽的手微微地抖着，她接过一个密封匣。她的泪水砸在C.Y.两个字母上——这是她和母亲每年生日约定好的礼物盒子。她按下机关，匣子"咔嗒"弹开，一封信飘落在地。
+
+"亲爱的女儿，恭喜你17岁了。我下定决心在你最喜欢的年纪把这件事告诉你。今年，你终于要踏上外星之旅。可是，这不是第一次你不在地球。你应该不记得，我第一次遇到你的时候，你那样小，躺在一大片粉色里面，就像粉色果酱里躺着一颗水晶一样。生命是一种奇迹。那个星球被人类研发的能源污染，许多生命消亡，而你却迎来新生。我还记得第一次抱着你，你柔软的身体突然拨动了我的心。尽管同事说，你已经被能源污染，也许活不长，也许意识会出现问题。但这份奇迹，我不想失去。你小时候总是向我描绘一个粉色星球，我想或许是生命向着本原的朝圣吧，或许宇宙早已为你预留了归途。对不起，妈妈不是一个能够时刻陪伴你的母亲，但我一直都认为你是宇宙送给我最珍贵的礼物。感恩宇宙，留下你。生日快乐，艾丽。"
+
+艾丽的手紧紧攥着信，问女人："你认识我母亲吗？能尽快带我回地球找她吗？"女人却低下头，不敢直视艾丽的眼睛——满含泪水。她只有再紧紧地抱住艾丽，说："一颗稳定的小行星突然偏离稳定的轨道撞击地球，产生的空间碎片撞击了飞船，导致第411号飞船偏离原定飞行轨迹，飞船爆炸，乘客失踪。你的母亲……春樱她……也在那艘飞船上。"
+
+艾丽脑袋嗡嗡作响，一阵天旋地转，感觉身体不自觉地要倒下。女人立马抱住艾丽，"没事吧，艾丽？！"艾丽用残尽的意识使自己保持清醒。她狠狠地掐自己，不停地颤抖着。
+
+女人看着艾丽满脸的泪水，正想出声安慰。艾丽打断了她，"可以麻烦你再让我回去吗？"
+
+艾丽重新来到基地，手指抚过那个模糊的句子。
+
+她问女人"妈妈失落在哪个星球？"女人说只在飞船上找到匣子，人员还下落不明。
+
+艾丽望向天幕，只能看到模糊的粉色。女人告诉她，那个老旧的飞船是无法到达任何地方的。
+
+但艾丽又重新坐上飞船，注满能源，双手合十。她感受到粉色的海洋似乎在向她靠近，身体又开始澎湃起来。这次还能带来奇迹吗？
+
+亲爱的妈妈，不管是星球的光年距离，还是失落的千天时间，爱没有边境。
+
+你给的爱，永不失联。
+
+保佑艾丽，找到妈妈。
+
+女人朝她大喊："艾丽！快下来！"
+
+艾丽没有回头，说："一定能到达的。"`
+                }
+            };
+
+            const articleModal = document.getElementById('article-modal');
+            const articleModalTitle = document.querySelector('.article-modal-title');
+            const articleModalBody = document.querySelector('.article-modal-body');
+            const articleModalClose = document.querySelector('.article-modal-close');
+
+            // 点击文章标题打开弹窗
+            document.querySelectorAll('.article-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const articleId = this.getAttribute('data-article');
+                    const article = articles[articleId];
+                    if (article) {
+                        articleModalTitle.textContent = article.title + ' - ' + article.author;
+                        articleModalBody.textContent = article.content;
+                        articleModal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    }
+                });
+            });
+
+            // 关闭弹窗
+            function closeArticleModal() {
+                articleModal.classList.add('closing');
+                setTimeout(() => {
+                    articleModal.classList.remove('active', 'closing');
+                    document.body.style.overflow = '';
+                }, 400);
+            }
+
+            articleModalClose.addEventListener('click', closeArticleModal);
+
+            articleModal.addEventListener('click', function(e) {
+                if (e.target === articleModal) {
+                    closeArticleModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
